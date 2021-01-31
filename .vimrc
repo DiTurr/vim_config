@@ -74,6 +74,10 @@ set showmatch
 " Automatically indent the next new line to match the indent of the previous one
 set autoindent
 
+" Vertical column
+set colorcolumn=100
+hi ColorColumn ctermbg=0 guibg=lightgrey
+
 " Enable sintax highlighting
 syntax on
 

@@ -1,3 +1,4 @@
+" Python sintax
 " For version 5.x: Clear all syntax items
 " For versions greater than 6.x: Quit when a syntax file was already loaded
 if v:version < 600
@@ -29,6 +30,7 @@ syn keyword pythonOperator	   and in is not or
 syn keyword pythonException	   except finally raise try
 syn keyword pythonInclude	   from import
 syn match   pythonComma        ","
+
 
 "
 " Comments
