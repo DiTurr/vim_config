@@ -75,11 +75,23 @@ set showmatch
 set autoindent
 
 " Vertical column
-set colorcolumn=100
-hi ColorColumn ctermbg=0 guibg=lightgrey
+" set colorcolumn=100
+" hi ColorColumn ctermbg=0 guibg=lightgrey
 
 " Enable sintax highlighting
 syntax on
+
+" Enable cursor shape changes (vertical line in insert mode)
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' | 
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
 
 " Enable python highlighting and syntax
 au BufRead,BufNewFile *.py set filetype=python
@@ -87,6 +99,9 @@ au BufRead,BufNewFile *.py set filetype=python
 " General sintax 
 hi Normal                    ctermfg=7     ctermbg=16 
 hi LineNr                    ctermfg=8     ctermbg=16   
+hi Visual                    ctermfg=NONE  ctermbg=33   
+hi MatchParen                ctermfg=160   ctermbg=NONE   cterm=bold 
+
 " Python sintax
 hi pythonConstant            ctermfg=172   ctermbg=NONE
 hi pythonStatement           ctermfg=172   ctermbg=NONE
